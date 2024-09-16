@@ -24,7 +24,7 @@ export function FontProvider({ children }) {
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                 <Text style={{ fontSize: 28, marginTop: 15 }}>
                     Carregando as fontes
-                    </Text>
+                </Text>
                 <ActivityIndicator size="large" color="#0000ff" />
             </View>
         );
