@@ -11,7 +11,7 @@ export default function App() {
       await signIn({ email: "super@email.com", password: "Super123!" })
       router.replace("/");
     } catch (error) {
-      console.log(e)
+      console.log(error)
        }
      }
 
@@ -23,7 +23,7 @@ export default function App() {
 
       <Button title="SignIn Adm"
       onPress={() => 
-        signIn({ email: "adm@email.com", password: "Adm123!" })
+        signIn({ email: "admin@email.com", password: "Adm123!" })
         }
       />
       <Button title="SignIn User"
