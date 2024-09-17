@@ -5,7 +5,9 @@ import { FontProvider } from "./Font";
 export function AppProvider({ children }) {
     return ( 
     <FontProvider>
+        <DataProvider>
         <AuthProvider>{children}</AuthProvider> 
+        </DataProvider>
     </FontProvider>
       );
 }
