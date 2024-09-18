@@ -17,8 +17,7 @@ export default function App() {
 
   const handleEntrarSuper = async () => {
     try {
-      await signIn({ email: "super@email.com", password: "Super123!" })
-      router.replace("/");
+      await signIn({ email: "super@email.com", password: "A123456a!" })
     } catch (error) {
       console.log(error)
     }
@@ -41,7 +40,6 @@ export default function App() {
 
       <Button title="Entrar" onPress={handleEntrarSuper} />
       <Button title="Sobre" onPress={() => router.push("/about")} />
-      <Button title="Protected" onPress={() => router.push("/list")} />
       <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} />
       <StatusBar style="auto" />
     </View>

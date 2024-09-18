@@ -14,7 +14,7 @@ const StackLayout = () => {
          router.replace("/");
       } else {
          if (user?.autenticated) {
-            router.replace("/(protected)");
+            router.replace("(protected)");
          }
       }
    }, [user]);
@@ -28,9 +28,6 @@ const StackLayout = () => {
 };
 
 export default function Layout() {
-   
-
-
    return (
       <AppProvider>
          <StackLayout />
