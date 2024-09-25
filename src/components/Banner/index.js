@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import PagerView from "react-native-pager-view";
 
 export function Banner() {
@@ -12,14 +12,17 @@ export function Banner() {
 
     return (
         <View style={styles.container}>
-            <PagerView initialPage={0} style={styles.content}>
+            <PagerView initialPage={0} style={styles.content} onPageSelected={onPageSelected}>
                 <View key="1" style={styles.page}>
+                    <Image source={require("../../assets/img/fernando.jpg")} />
                     <Text style={styles.text}>Banner1</Text>
                 </View>
                 <View key="2" style={styles.page}>
+                    <Image source={require("../../assets/img/vegetavasco.png")} />
                     <Text style={styles.text}>Banner 2</Text>
                 </View>
                 <View key="3" style={styles.page}>
+                    <Image source={require("../../assets/img/gojira.jpg")} />
                     <Text style={styles.text}>Banner 3</Text>
                 </View>
             </PagerView>
@@ -35,18 +38,20 @@ export function Banner() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: 300,
     },
     content: {
         width: '100%',
         marginTop: 10,
-        height: 100,
-        justifyContent: 'center',
+        height: 190,
     },
     page: {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
         backgroundColor: '#ADD8E6',
+        height: 240,
+        borderRadius: 10,
     },
     bullet: {
         width: 10,

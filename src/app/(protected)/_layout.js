@@ -26,7 +26,7 @@ function CustomDrawerContent(props) {
          }}
         />
         <Text style={{ textAlign: "center", fontSize: 20 }}>
-          {user.user.nome}
+          {user?.user?.nome}
         </Text>
       </View>
       <DrawerContentScrollView {...props}>
@@ -37,7 +37,7 @@ function CustomDrawerContent(props) {
           justifyContent: "center", alignItems: "center",
           height: 50,
           padding: 10,
-          backgroundColor: "#0000ff",
+          backgroundColor: "#836FFF",
           borderRadius: 5,
           margin: 10
         }} >

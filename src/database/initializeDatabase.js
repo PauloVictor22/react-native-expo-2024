@@ -15,7 +15,7 @@ export async function initializeDatabase(database) {
                 updated_at DATE
             );
 
-            CREATE TABLE IF NOT EXISTS payments (
+            CREATE TABLE IF NOT EXISTS payments(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
             user_cadastro INTEGER NOT NULL,
@@ -25,7 +25,7 @@ export async function initializeDatabase(database) {
             created_at DATE DEFAULT CURRENT_TIMESTAMP,
             updated_at DATE,
             FOREIGN KEY (user_id) REFERENCES users(id),
-            FOREIGN KEY (user_cadastro) REFERENCES users(id),
+            FOREIGN KEY (user_cadastro) REFERENCES users(id)
 
             );
             
