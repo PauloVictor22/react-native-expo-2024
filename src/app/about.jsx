@@ -23,7 +23,7 @@ export default function About() {
               atualmente cursando informática no 2º ano de curso.
                     Gosto de ouvir música e tocar guitarra, atualmente em busca de formar uma banda.
             </Text>
-            <Button title="Sair" onPress={() => { router.replace("/") }} />
+            <Button title="Sair" onPress={() => { router.back() }} />
         </View>
         </View>
 

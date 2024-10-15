@@ -51,7 +51,7 @@ export default function App() {
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.buttonSecondary} onPress={() => router.push("/about")}>
+      <TouchableOpacity style={styles.buttonSecondary} onPress={() => router.push("about")}>
         <Text style={styles.buttonTextSecondary}>Sobre</Text>
       </TouchableOpacity>
 
