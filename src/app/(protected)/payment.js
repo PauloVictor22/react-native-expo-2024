@@ -7,6 +7,8 @@ import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { z } from "zod";
 import { useAuth } from "../../hooks/Auth/index";
+import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
+import { useUsersDatabase } from "../../database/useUsersDatabase";
 
 
 
@@ -21,118 +23,15 @@ const paymentSchema = z.object({
 
 export default function Payment() {
     const [valor, setValor] = useState("0,00");
-    const [sugestoes, setSugestoes] = useState([{
-        "id": 1,
-        "nome": "Travis Dewbury"
-    }, {
-        "id": 2,
-        "nome": "Henrie Ruoss"
-    }, {
-        "id": 3,
-        "nome": "Emmett Felce"
-    }, {
-        "id": 4,
-        "nome": "Michal Lyford"
-    }, {
-        "id": 5,
-        "nome": "Joelle Scragg"
-    }, {
-        "id": 6,
-        "nome": "Tina Loveday"
-    }, {
-        "id": 7,
-        "nome": "Billy Buckwell"
-    }, {
-        "id": 8,
-        "nome": "Jaquith Bacop"
-    }, {
-        "id": 9,
-        "nome": "Paulie Vargas"
-    }, {
-        "id": 10,
-        "nome": "Keri Nornasell"
-    }, {
-        "id": 11,
-        "nome": "Rancell Derx"
-    }, {
-        "id": 12,
-        "nome": "Abbie Tomisch"
-    }, {
-        "id": 13,
-        "nome": "Alfy Insull"
-    }, {
-        "id": 14,
-        "nome": "Lanna Palia"
-    }, {
-        "id": 15,
-        "nome": "Ketty Shorthill"
-    }, {
-        "id": 16,
-        "nome": "Midge Burress"
-    }, {
-        "id": 17,
-        "nome": "Zak Pallin"
-    }, {
-        "id": 18,
-        "nome": "Anett Tieman"
-    }, {
-        "id": 19,
-        "nome": "Ofella Agate"
-    }, {
-        "id": 20,
-        "nome": "Alla Wallach"
-    }, {
-        "id": 21,
-        "nome": "Ange Mushrow"
-    }, {
-        "id": 22,
-        "nome": "Baily Carnie"
-    }, {
-        "id": 23,
-        "nome": "Maximo Bottomley"
-    }, {
-        "id": 24,
-        "nome": "Jeanie Godsal"
-    }, {
-        "id": 25,
-        "nome": "Linc Aronson"
-    }, {
-        "id": 26,
-        "nome": "Sky Goulborn"
-    }, {
-        "id": 27,
-        "nome": "Shelton Dorning"
-    }, {
-        "id": 28,
-        "nome": "Murry McAline"
-    }, {
-        "id": 29,
-        "nome": "Danella Olenchenko"
-    }, {
-        "id": 30,
-        "nome": "Indira Matuskiewicz"
-    }, {
-        "id": 31,
-        "nome": "Grannie Honnicott"
-    }, {
-        "id": 32,
-        "nome": "Diena Cromblehome"
-    }, {
-        "id": 33,
-        "nome": "Etta Bebis"
-    }, {
-        "id": 34,
-        "nome": "Retha Lipgens"
-    }, {
-        "id": 35,
-        "nome": "Fred Eshmade"
-    }]);
+    const [sugestoes, setSugestoes] = useState([]);
     const [id, setId] = useState(1);
     const [data, setData] = useState(new Date());
     const [viewCalendar, setViewCalendar] = useState(false);
     const [observacao, setObservacao] = useState("");
     const valueRef = useRef();
     const { user } = useAuth();
+    const { createPayment } = usePaymentsDatabase();
+    const { getAllUsers } = useUsersDatabase();
 
     const handleCalendar = (event, selectedDate) => {
         setData(selectadedDate);
@@ -141,6 +40,11 @@ export default function Payment() {
 
     useEffect(() => {
         valueRef.current.focus();
+        try {
+            
+        } catch (error) {
+            
+        }
     }, []);
 
     const handleChanedValor = (value) => {
@@ -173,7 +77,7 @@ export default function Payment() {
             return valorConvertido;
         }
 
-         }
+    }
 
 
     const handleSubmit = async () => {
@@ -186,13 +90,14 @@ export default function Payment() {
         };
 
         try {
-            const result = await paymentSchema.parseAsync(payment);
+            const result = await paymentSchema.parse(payment);
+            const { insertedID } = await createPayment(payment);
             console.log(result);
+            console.log(insertedID);
         } catch (error) {
             console.log(error);
         }
     };
-
 
     return (
 
