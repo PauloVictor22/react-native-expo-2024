@@ -5,7 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useRef, useState } from "react";
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { z } from "zod";
+import { set, z } from "zod";
 import { useAuth } from "../../hooks/Auth/index";
 import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
 import { useUsersDatabase } from "../../database/useUsersDatabase";
@@ -39,13 +39,18 @@ export default function Payment() {
     };
 
     useEffect(() => {
-        valueRef.current.focus();
-        try {
-            
-        } catch (error) {
-            
-        }
-    }, []);
+        (async () => {
+            valueRef.current.focus();
+            try {
+                const users = await getAllUsers();
+                setSugestoes(users);
+                setId(users[0].id);
+            } catch (error) {
+                console.log(error);
+            }
+        }, []);
+
+    })();
 
     const handleChanedValor = (value) => {
         try {
@@ -92,8 +97,12 @@ export default function Payment() {
         try {
             const result = await paymentSchema.parse(payment);
             const { insertedID } = await createPayment(payment);
-            console.log(result);
             console.log(insertedID);
+            setValor("0,00");
+            setId(sugestoes[0].id);
+            setData(new Date());
+            setObservacao("");
+            valueRef.current.focus();
         } catch (error) {
             console.log(error);
         }
